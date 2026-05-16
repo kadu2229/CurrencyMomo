@@ -10,7 +10,7 @@ const connection = new Sequelize(process.env.DATABASE_URL!, {
       rejectUnauthorized: true
     }
   },
-  logging: false
+  logging: true
 });
 
 export default connection;
