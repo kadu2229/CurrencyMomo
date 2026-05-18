@@ -2,7 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connection from './config/db';
 import User from './modules/user/user.model';
+import Expense from './modules/expenses/expenses.model';
 import userRoutes from './modules/user/user.routes';
+import expenseRoutes from './modules/expenses/expense.routes';
 
 dotenv.config();
 
@@ -11,6 +13,7 @@ app.use(express.json());
 
 
 app.use('/api/users',userRoutes);
+app.use('/api/expenses', expenseRoutes);
 
 const start = async () => {
     try {

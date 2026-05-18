@@ -1,3 +1,4 @@
+/// <reference path="../types/express.d.ts" />
 import { Request, Response, NextFunction } from "express";
 import jwt from 'jsonwebtoken';
 
@@ -9,10 +10,11 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
     return res.status(401).json({ message: 'Authorization header is missing or invalid' });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET!, (err, decoded) => {
+  jwt.verify(token, process.env.JWT_SECRET!, (err, decoded: any) => {
     if (err) {
       return res.status(401).json({ message: 'Invalid token' });
     }
+    req.userId = decoded.id;
     next();
   });
 };
