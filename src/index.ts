@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import connection from './config/db';
 import User from './modules/user/user.model';
 import Expense from './modules/expenses/expenses.model';
+import Income from './modules/income/income.model';
+import incomeRoutes from './modules/income/income.routes';
 import userRoutes from './modules/user/user.routes';
 import expenseRoutes from './modules/expenses/expense.routes';
 
@@ -11,7 +13,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-
+app.use('/api/incomes', incomeRoutes);
 app.use('/api/users',userRoutes);
 app.use('/api/expenses', expenseRoutes);
 
