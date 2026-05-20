@@ -1,5 +1,8 @@
 import { DataTypes } from "sequelize";
 import connection from "../../config/db";
+import Expense from "../expenses/expenses.model";
+import Income from "../income/income.model";
+import Goal from "../goals/goals.model";
 
 const User = connection.define('User', {
     login: {

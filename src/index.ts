@@ -9,6 +9,7 @@ import goalRoutes from './modules/goals/goals.routes';
 import incomeRoutes from './modules/income/income.routes';
 import userRoutes from './modules/user/user.routes';
 import expenseRoutes from './modules/expenses/expense.routes';
+import './config/associations';
 
 dotenv.config();
 
