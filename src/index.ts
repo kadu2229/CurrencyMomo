@@ -4,6 +4,8 @@ import connection from './config/db';
 import User from './modules/user/user.model';
 import Expense from './modules/expenses/expenses.model';
 import Income from './modules/income/income.model';
+import Goal from './modules/goals/goals.model';
+import goalRoutes from './modules/goals/goals.routes';
 import incomeRoutes from './modules/income/income.routes';
 import userRoutes from './modules/user/user.routes';
 import expenseRoutes from './modules/expenses/expense.routes';
@@ -16,6 +18,7 @@ app.use(express.json());
 app.use('/api/incomes', incomeRoutes);
 app.use('/api/users',userRoutes);
 app.use('/api/expenses', expenseRoutes);
+app.use('/api/goals', goalRoutes);
 
 const start = async () => {
     try {
