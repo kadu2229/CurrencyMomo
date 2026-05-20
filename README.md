@@ -40,3 +40,35 @@ npm run dev
 ## Variáveis de Ambiente / Environment Variables
 
 Veja / See `.env.example`
+
+## Endpoints
+
+### Users
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
+| POST | /api/users/register | Cadastrar usuário | ❌ |
+| POST | /api/users/login | Login | ❌ |
+
+### Expenses
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
+| POST | /api/expenses | Criar despesa | ✅ |
+| GET | /api/expenses | Listar despesas | ✅ |
+| PUT | /api/expenses/:id | Atualizar despesa | ✅ |
+| DELETE | /api/expenses/:id | Deletar despesa | ✅ |
+
+### Incomes
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
+| POST | /api/incomes | Criar renda | ✅ |
+| GET | /api/incomes | Listar rendas | ✅ |
+| PUT | /api/incomes/:id | Atualizar renda | ✅ |
+| DELETE | /api/incomes/:id | Deletar renda | ✅ |
+
+### Goals
+| Método | Rota | Descrição | Auth |
+|--------|------|-----------|------|
+| POST | /api/goals | Criar meta | ✅ |
+| GET | /api/goals | Listar metas | ✅ |
+| PUT | /api/goals/:id | Atualizar meta | ✅ |
+| DELETE | /api/goals/:id | Deletar meta | ✅ |

@@ -25,7 +25,7 @@ const start = async () => {
         await connection.authenticate();
         console.log('Database connected!');
 
-        await connection.sync({ force: true });
+        await connection.sync();
         console.log('Models:', Object.keys(connection.models));
         console.log('Tables created!');
 
