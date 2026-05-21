@@ -13,6 +13,7 @@ import userRoutes from './modules/user/user.routes';
 import expenseRoutes from './modules/expenses/expense.routes';
 import './config/associations';
 import helmet from 'helmet';
+import cors from 'cors';
 import { errorHandler } from './middlewares/errorHandler';
 import { limiter } from './config/rateLimiter';
 
@@ -20,6 +21,11 @@ const app = express();
 app.use(express.json());
 app.use(helmet());
 app.use(limiter);
+app.use(cors({
+  origin: process.env.FRONTEND_URL || 'http://localhost:3001',
+  methods: ['GET', 'POST','PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 
 app.use('/api/incomes', incomeRoutes);
