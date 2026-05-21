@@ -1,9 +1,15 @@
+import { createIncomeSchema, updateIncomeSchema } from "./income.schema";
 import { Request, Response } from "express";
 import { createIncome, updateIncome, deleteIncome, getIncomesByUser } from "./income.service";
 
 
 export const create = async (req: Request, res: Response) => {
-  const { description, amount } = req.body;
+    const result = createIncomeSchema.safeParse(req.body);
+    if (!result.success) {
+        return res.status(400).json({ errors: result.error.issues });
+    }
+
+  const { description, amount } = result.data;
   const userId = req.userId;
     if (!userId) {
       return res.status(400).json({ error: "User ID is required" });
@@ -30,8 +36,12 @@ export const getByUser = async (req: Request, res: Response) => {
 }
 
 export const update = async (req: Request, res: Response) => {
+    const result = updateIncomeSchema.safeParse(req.body);
     const id = req.params.id as string;
-    const { description, amount } = req.body;
+    const { description, amount } = result.data ?? {};
+    if (!result.success) {
+        return res.status(400).json({ errors: result.error.issues });
+    }
     const userId = req.userId;
     if (!userId) {
         return res.status(400).json({ error: "User ID is required" });

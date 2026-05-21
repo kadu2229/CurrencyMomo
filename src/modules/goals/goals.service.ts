@@ -10,7 +10,7 @@ export const getGoalsByUser = async (userId: number) => {
     return goals;
 }
 
-export const updateGoal = async (id: number, userId: number, title: string, targetAmount: number) => {
+export const updateGoal = async (id: number, userId: number, title: string | undefined, targetAmount: number | undefined) => {
     const goal = await Goal.findOne({ where: { id, userId } });
     if (!goal) {
         throw new Error("Goal not found");

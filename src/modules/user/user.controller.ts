@@ -1,8 +1,15 @@
+import { createUserSchema, loginUserSchema } from "./user.schema";
+
 import { Request, Response } from 'express';
 import { createUser, loginUser } from './user.service';
 
 export const register = async (req: Request, res: Response) => {
-    const {login, password} = req.body;
+    const result = createUserSchema.safeParse(req.body);
+    if (!result.success) {
+        return res.status(400).json({ errors: result.error.issues });
+    }
+
+    const { login, password } = result.data;
     try {
         const user = await createUser(login, password);
         res.status(201).json({ message: 'User created successfully', 
@@ -16,7 +23,12 @@ export const register = async (req: Request, res: Response) => {
 }
 
 export const login = async (req: Request, res: Response) => {
-    const {login, password} = req.body;
+    const result = loginUserSchema.safeParse(req.body);
+    if (!result.success) {
+        return res.status(400).json({ errors: result.error.issues });
+    }
+
+    const { login, password } = result.data;
     try {
         const token = await loginUser(login, password);
         res.status(200).json({message: 'Login successful', token });

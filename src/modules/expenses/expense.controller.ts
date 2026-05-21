@@ -1,3 +1,4 @@
+import { createExpenseSchema, updateExpenseSchema } from "./expense.schema";
 import {
   createExpense,
   deleteExpense,
@@ -7,12 +8,15 @@ import {
 import { Request, Response } from "express";
 
 export const create = async (req: Request, res: Response) => {
-  const { description, amount, category } = req.body;
+  const result = createExpenseSchema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({ errors: result.error.issues });
+  }
+
+  const { description, amount, category } = result.data;
   const userId = req.userId;
 
-  if (!userId) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
+  if (!userId) return res.status(401).json({ message: 'Unauthorized' });
 
   try {
     const expense = await createExpense(description, amount, category, userId);
@@ -38,8 +42,13 @@ export const getByUser = async (req: Request, res: Response) => {
 };
 
 export const update = async (req: Request, res: Response) => {
+  const result = updateExpenseSchema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({ errors: result.error.issues });
+  }
+
   const id = req.params.id as string;
-  const { description, amount, category } = req.body;
+  const { description, amount, category } = result.data;
   const userId = req.userId;
 
   if (!userId) {

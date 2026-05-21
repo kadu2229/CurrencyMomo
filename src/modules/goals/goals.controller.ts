@@ -1,10 +1,23 @@
+/// <reference path="../../types/express.d.ts" />
+
+import { createGoalSchema, updateGoalSchema } from "./goals.schema";
 import { Request, Response } from "express";
-import { createGoal, getGoalsByUser, updateGoal, deleteGoal } from "./goals.service";
+import {
+  createGoal,
+  getGoalsByUser,
+  updateGoal,
+  deleteGoal,
+} from "./goals.service";
 
 export const create = async (req: Request, res: Response) => {
-  const { title, targetAmount } = req.body;
+    const result = createGoalSchema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({ errors: result.error.issues });
+  }
+
+  const { title, targetAmount } = result.data;
   const userId = req.userId;
-  if (!userId) return res.status(401).json({ message: 'Unauthorized' });
+  if (!userId) return res.status(401).json({ message: "Unauthorized" });
   try {
     const goal = await createGoal(userId, title, targetAmount);
     res.status(201).json(goal);
@@ -15,7 +28,7 @@ export const create = async (req: Request, res: Response) => {
 
 export const getAllByUser = async (req: Request, res: Response) => {
   const userId = req.userId;
-  if (!userId) return res.status(401).json({ message: 'Unauthorized' });
+  if (!userId) return res.status(401).json({ message: "Unauthorized" });
   try {
     const goals = await getGoalsByUser(userId);
     res.json(goals);
@@ -26,9 +39,13 @@ export const getAllByUser = async (req: Request, res: Response) => {
 
 export const update = async (req: Request, res: Response) => {
   const id = req.params.id as string;
-  const { title, targetAmount } = req.body;
+  const result = updateGoalSchema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({ errors: result.error.issues });
+  }
+  const { title, targetAmount } = result.data;
   const userId = req.userId;
-  if (!userId) return res.status(401).json({ message: 'Unauthorized' });
+  if (!userId) return res.status(401).json({ message: "Unauthorized" });
   try {
     const goal = await updateGoal(parseInt(id), userId, title, targetAmount);
     res.json(goal);
@@ -40,7 +57,7 @@ export const update = async (req: Request, res: Response) => {
 export const destroy = async (req: Request, res: Response) => {
   const id = req.params.id as string;
   const userId = req.userId;
-  if (!userId) return res.status(401).json({ message: 'Unauthorized' });
+  if (!userId) return res.status(401).json({ message: "Unauthorized" });
   try {
     await deleteGoal(parseInt(id), userId);
     res.status(204).send();

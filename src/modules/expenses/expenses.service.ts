@@ -10,7 +10,7 @@ export const getExpensesByUser = async (userId: number) => {
     return expenses;
 };
 
-export const updateExpense = async (id: number, description: string, amount: number, category: string) => {
+export const updateExpense = async (id: number, description?: string, amount?: number, category?: string) => {
     const expense = await Expense.findByPk(id);
     if (!expense) {
         throw new Error("Expense not found");
