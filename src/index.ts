@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
+import './config/env';
 
 import express from 'express';
 import connection from './config/db';
