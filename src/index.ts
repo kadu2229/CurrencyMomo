@@ -13,6 +13,7 @@ import userRoutes from './modules/user/user.routes';
 import expenseRoutes from './modules/expenses/expense.routes';
 import './config/associations';
 import helmet from 'helmet';
+import { errorHandler } from './middlewares/errorHandler';
 import { limiter } from './config/rateLimiter';
 
 const app = express();
@@ -25,6 +26,7 @@ app.use('/api/incomes', incomeRoutes);
 app.use('/api/users',userRoutes);
 app.use('/api/expenses', expenseRoutes);
 app.use('/api/goals', goalRoutes);
+app.use(errorHandler);
 
 const start = async () => {
     try {
