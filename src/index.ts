@@ -1,5 +1,7 @@
-import express from 'express';
 import dotenv from 'dotenv';
+dotenv.config();
+
+import express from 'express';
 import connection from './config/db';
 import User from './modules/user/user.model';
 import Expense from './modules/expenses/expenses.model';
@@ -10,11 +12,14 @@ import incomeRoutes from './modules/income/income.routes';
 import userRoutes from './modules/user/user.routes';
 import expenseRoutes from './modules/expenses/expense.routes';
 import './config/associations';
-
-dotenv.config();
+import helmet from 'helmet';
+import { limiter } from './config/rateLimiter';
 
 const app = express();
 app.use(express.json());
+app.use(helmet());
+app.use(limiter);
+
 
 app.use('/api/incomes', incomeRoutes);
 app.use('/api/users',userRoutes);
