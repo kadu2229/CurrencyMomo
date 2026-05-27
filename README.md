@@ -15,28 +15,29 @@
 - Zod — data validation
 - Helmet — HTTP security headers
 - express-rate-limit — brute force protection
+- Swagger — interactive API documentation
 
 ---
 
 ## Getting Started / Como rodar
 
 1. Clone o repositório / Clone the repo
-\```bash
+```bash
 git clone https://github.com/seu-usuario/currencymomo
-\```
+```
 
 2. Instale as dependências / Install dependencies
-\```bash
+```bash
 npm install
-\```
+```
 
 3. Copie o `.env.example` para `.env` e preencha os valores
 Copy `.env.example` to `.env` and fill in the values
 
 4. Rode em desenvolvimento / Run in development
-\```bash
+```bash
 npm run dev
-\```
+```
 
 ---
 
@@ -54,6 +55,13 @@ npm run dev
 ## Variáveis de Ambiente / Environment Variables
 
 Veja / See `.env.example`
+
+---
+
+## Documentação Interativa / Interactive Docs
+
+Após rodar o projeto acesse / After running the project access:
+http://localhost:3000/api/docs
 
 ---
 

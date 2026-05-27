@@ -2,6 +2,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 import './config/env';
 
+import logger from './config/logger';
+import SwaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from './config/swagger';
 import express from 'express';
 import connection from './config/db';
 import User from './modules/user/user.model';
@@ -33,22 +36,23 @@ app.use('/api/incomes', incomeRoutes);
 app.use('/api/users',userRoutes);
 app.use('/api/expenses', expenseRoutes);
 app.use('/api/goals', goalRoutes);
+app.use('/api/docs', SwaggerUi.serve, SwaggerUi.setup(swaggerSpec));
 app.use(errorHandler);
 
 const start = async () => {
     try {
         await connection.authenticate();
-        console.log('Database connected!');
+        logger.info('Database connected!');
 
         await connection.sync();
-        console.log('Models:', Object.keys(connection.models));
-        console.log('Tables created!');
+        logger.info(`Models: ${Object.keys(connection.models)}`);
+        logger.info('Tables created!');
 
         app.listen(process.env.PORT || 3000, () => {
-            console.log(`Server running on port ${process.env.PORT || 3000}`);
+            logger.info(`Server running on port ${process.env.PORT || 3000}`);
         });
     } catch (error) {
-        console.error('Unable to connect:', error);
+        logger.error('Unable to connect:', error);
     }
 }
 
