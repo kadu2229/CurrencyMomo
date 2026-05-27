@@ -44,10 +44,6 @@ const start = async () => {
         await connection.authenticate();
         logger.info('Database connected!');
 
-        await connection.sync();
-        logger.info(`Models: ${Object.keys(connection.models)}`);
-        logger.info('Tables created!');
-
         app.listen(process.env.PORT || 3000, () => {
             logger.info(`Server running on port ${process.env.PORT || 3000}`);
         });
