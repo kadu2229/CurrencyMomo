@@ -6,6 +6,13 @@
 
 ---
 
+## 🚀 Demo
+
+- **API:** https://currencymomo.onrender.com
+- **Documentação interativa:** https://currencymomo.onrender.com/api/docs
+
+---
+
 ## Tech Stack
 
 - Node.js + TypeScript
@@ -16,6 +23,8 @@
 - Helmet — HTTP security headers
 - express-rate-limit — brute force protection
 - Swagger — interactive API documentation
+- Winston — structured logging
+- GitHub Actions — CI/CD
 
 ---
 
@@ -23,7 +32,7 @@
 
 1. Clone o repositório / Clone the repo
 ```bash
-git clone https://github.com/seu-usuario/currencymomo
+git clone https://github.com/kadu2229/CurrencyMomo
 ```
 
 2. Instale as dependências / Install dependencies
@@ -34,7 +43,12 @@ npm install
 3. Copie o `.env.example` para `.env` e preencha os valores
 Copy `.env.example` to `.env` and fill in the values
 
-4. Rode em desenvolvimento / Run in development
+4. Rode as migrations / Run migrations
+```bash
+npm run migrate
+```
+
+5. Rode em desenvolvimento / Run in development
 ```bash
 npm run dev
 ```
@@ -49,6 +63,8 @@ npm run dev
 | `npm run build` | Compila o TypeScript |
 | `npm start` | Roda em produção |
 | `npm test` | Roda os testes unitários |
+| `npm run migrate` | Roda as migrations |
+| `npm run migrate:undo` | Reverte a última migration |
 
 ---
 
@@ -60,8 +76,8 @@ Veja / See `.env.example`
 
 ## Documentação Interativa / Interactive Docs
 
-Após rodar o projeto acesse / After running the project access:
-http://localhost:3000/api/docs
+- **Local:** http://localhost:3000/api/docs
+- **Produção:** https://currencymomo.onrender.com/api/docs
 
 ---
 
