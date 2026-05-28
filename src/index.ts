@@ -31,7 +31,6 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-
 app.use('/api/incomes', incomeRoutes);
 app.use('/api/users',userRoutes);
 app.use('/api/expenses', expenseRoutes);
