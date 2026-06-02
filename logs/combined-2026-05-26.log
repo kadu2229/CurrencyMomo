@@ -1,6 +1,0 @@
-{"level":"info","message":"Database connected!","timestamp":"2026-05-27T01:44:07.621Z"}
-{"level":"info","message":"Models: Goal,Income,User,Expense","timestamp":"2026-05-27T01:44:09.117Z"}
-{"level":"info","message":"Tables created!","timestamp":"2026-05-27T01:44:09.118Z"}
-{"level":"info","message":"Server running on port 3000","timestamp":"2026-05-27T01:44:09.124Z"}
-{"level":"info","message":"Database connected!","timestamp":"2026-05-27T02:13:11.544Z"}
-{"level":"info","message":"Server running on port 3000","timestamp":"2026-05-27T02:13:11.548Z"}
