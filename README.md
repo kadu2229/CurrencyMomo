@@ -1,4 +1,4 @@
-# CurrencyMomo 💰
+# CurrencyMomo
 
 **EN:** Personal finance management API. Track your income, expenses and goals.
 
@@ -6,7 +6,7 @@
 
 ---
 
-## 🚀 Demo
+## Demo
 
 - **API:** https://currencymomo.onrender.com
 - **Documentação interativa:** https://currencymomo.onrender.com/api/docs
